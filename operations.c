@@ -11,7 +11,7 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new;
 	int n;
 
-	if (operand == NULL || atoi(operand) == 0)
+	if (operand == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
