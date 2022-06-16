@@ -62,6 +62,11 @@ void (*get_opr(char *str))(stack_t**, unsigned int)
 		{"pint", pint},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
+		{"mul", mul},
+		{"div", div_op},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 	int i = 0;
