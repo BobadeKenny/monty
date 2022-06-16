@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * mod - multiply top two elements of stack
