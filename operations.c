@@ -9,9 +9,16 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
-	int n = line_number;
+	int n;
+
+	if (operand == NULL || atoi(operand) == 0)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	new = malloc(sizeof(stack_t));
+	n = atoi(operand);
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -92,29 +99,4 @@ void swap(stack_t **stack, unsigned int line_number)
 	}
 	(*stack)->n = curr->next->n;
 	(*stack)->next->n = curr->n;
-}
-
-/**
- * add - add top two elements of stack
- * @stack: stack
- * @line_number: file line number
- * Return: nothing
- */
-void add(stack_t **stack, unsigned int line_number)
-{
-	stack_t *curr = *stack;
-	int n;
-
-	if (curr == NULL || curr->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	n = curr->next->n + curr->n;
-	pop(stack, line_number);
-	pop(stack, line_number);
-	curr->n = n;
-	curr->next = *stack;
-	curr->prev = NULL;
-	*stack = curr;
 }

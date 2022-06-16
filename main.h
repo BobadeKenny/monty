@@ -6,6 +6,8 @@
 #include <string.h>
 
 
+extern char* operand;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,10 +39,12 @@ typedef struct instruction_s
 } instruction_t;
 
 void parseFile(char *fileName);
+void (*get_opr(char *str))(stack_t**, unsigned int);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
 
 #endif
