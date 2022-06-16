@@ -24,3 +24,38 @@ void mod(stack_t **stack, unsigned int line_number)
 	curr->prev = NULL;
 	*stack = curr;
 }
+
+/**
+ * pchar - print head of stack
+ * @stack: stack
+ * @line_number: file line number
+ * Return: nothing
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", (*stack)->n);
+}
+
+/**
+ * pstr - print elements in stack
+ * @stack: stack
+ * @line_number: file line number
+ * Return: nothing
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	const stack_t *current = *stack;
+	(void)line_number;
+
+	while (current != NULL)
+	{
+		printf("%c", current->n);
+		current = current->next;
+	}
+	printf("\n");
+}

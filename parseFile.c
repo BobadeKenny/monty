@@ -67,6 +67,8 @@ void (*get_opr(char *str))(stack_t**, unsigned int)
 		{"mul", mul},
 		{"div", div_op},
 		{"mod", mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
 		{NULL, NULL}
 	};
 	int i = 0;
