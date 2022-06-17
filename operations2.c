@@ -78,6 +78,11 @@ void div_op(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	if (curr->n == 0)
+	{
+		fprintf(stderr, "L%d: can't div, division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	n = curr->next->n / curr->n;
 	pop(stack, line_number);
 	pop(stack, line_number);

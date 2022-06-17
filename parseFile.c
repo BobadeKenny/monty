@@ -60,6 +60,7 @@ void (*get_opr(char *str))(stack_t**, unsigned int)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
@@ -76,4 +77,26 @@ void (*get_opr(char *str))(stack_t**, unsigned int)
 	while (operations[i].opcode != NULL && strcmp((operations[i].opcode), str))
 		i++;
 	return (operations[i].f);
+}
+
+
+/**
+ * isNumber - check if str is numeric
+ * @str: operator string
+ *
+ * Return: 0 or 1
+ *
+*/
+int isNumber(char *str)
+{
+	unsigned int i;
+
+	for (i = 0; i < strlen(str); i++)
+	{
+		if (!isdigit((unsigned char)(str[i])))
+		{
+			return (0);
+		}
+	}
+	return (1);
 }
