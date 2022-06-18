@@ -41,6 +41,7 @@ typedef struct instruction_s
 void parseFile(char *filename);
 void (*get_opr(char *str))(stack_t**, unsigned int);
 int isNumber(char *str);
+void free_stack(stack_t *head);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);

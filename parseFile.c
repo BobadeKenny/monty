@@ -39,6 +39,10 @@ void parseFile(char *filename)
 		if (operation == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", j, tokens[0]);
+			free(line);
+			free_stack(stack);
+			fclose(file);
+
 			exit(EXIT_FAILURE);
 		}
 		operand = tokens[1];
@@ -46,7 +50,7 @@ void parseFile(char *filename)
 		j++;
 	}
 	free(line);
-	free(stack);
+	free_stack(stack);
 	fclose(file);
 	}
 
@@ -102,4 +106,23 @@ int isNumber(char *str)
 		}
 	}
 	return (1);
+}
+
+/**
+ * free_stack - frees a stack_t list
+ * @head: head of linked list
+ */
+void free_stack(stack_t *head)
+{
+	stack_t *current;
+	stack_t *next;
+
+	current = head;
+
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
 }
