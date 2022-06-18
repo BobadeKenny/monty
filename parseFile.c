@@ -38,13 +38,16 @@ void parseFile(char *fileName)
 		operation = get_opr(tokens[0]);
 		if (operation == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s", j, tokens[0]);
+			fprintf(stderr, "L%d: unknown instruction %s\n", j, tokens[0]);
 			exit(EXIT_FAILURE);
 		}
 		operand = tokens[1];
 		operation(&stack, j);
 		j++;
 	}
+	free(line);
+	free(stack);
+	fclose(file);
 	}
 
 /**
