@@ -63,7 +63,7 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div - divide top two elements of stack
+ * div_op - divide top two elements of stack
  * @stack: stack
  * @line_number: file line number
  * Return: nothing

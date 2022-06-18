@@ -4,31 +4,31 @@ char *operand;
 
 /**
  * parseFile - parses file
- * @fileName - name of file
- *
+ * @filename: operator string
  */
-void parseFile(char *fileName)
+void parseFile(char *filename)
 {
 	FILE *file;
 	char *line = NULL;
-	size_t len=0;
+	size_t len = 0;
 	void (*operation)(stack_t**, unsigned int);
 	stack_t *stack;
 	char *token;
 	char **tokens = malloc(256 * sizeof(char));
-	int i =0;
+	int i = 0;
 	unsigned int j = 1;
 
 	stack = NULL;
-	if((file = fopen(fileName, "r")) == NULL)
+	file = fopen(filename, "r");
+	if (file == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", fileName);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	while((getline(&line, &len, file)) != -1)
+	while ((getline(&line, &len, file)) != -1)
 	{
 		token = strtok(line, " \t\r\n\a");
-		while(token != NULL)
+		while (token != NULL)
 		{
 			tokens[i] = token;
 			token = strtok(NULL, " \t\r\n\a");
