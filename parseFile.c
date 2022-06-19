@@ -35,18 +35,21 @@ void parseFile(char *filename)
 			i++;
 		}
 		tokens[i] = NULL;
-		operation = get_opr(tokens[0]);
-		if (operation == NULL)
+		if (!isblank(tokens[0]))
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", j, tokens[0]);
-			free(line);
-			free_stack(stack);
-			fclose(file);
+			operation = get_opr(tokens[0]);
+			if (operation == NULL)
+			{
+				fprintf(stderr, "L%d: unknown instruction %s\n", j, tokens[0]);
+				free(line);
+				free_stack(stack);
+				fclose(file);
 
-			exit(EXIT_FAILURE);
+				exit(EXIT_FAILURE);
+			}
+			operand = tokens[1];
+			operation(&stack, j);
 		}
-		operand = tokens[1];
-		operation(&stack, j);
 		j++;
 	}
 	free(tokens);
@@ -128,4 +131,25 @@ void free_stack(stack_t *head)
 		free(current);
 		current = next;
 	}
+}
+
+/**
+ * isblank - check if str is numeric
+ * @str: operator string
+ *
+ * Return: 0 or 1
+ *
+*/
+int isblank(char *str)
+{
+	unsigned int i;
+	unsigned char s;
+
+	for (i = 0; i < strlen(str); i++)
+	{
+		s = str[i];
+		if (isspace(s))
+			return 1;
+	}
+		return 0;
 }
