@@ -49,6 +49,7 @@ void parseFile(char *filename)
 		operation(&stack, j);
 		j++;
 	}
+	free(tokens);
 	free(line);
 	free_stack(stack);
 	fclose(file);
@@ -77,6 +78,8 @@ void (*get_opr(char *str))(stack_t**, unsigned int)
 		{"mod", mod},
 		{"pchar", pchar},
 		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}
 	};
 	int i = 0;

@@ -66,7 +66,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 
 	while (current != NULL)
 	{
-		if (current->n > 127 || current->n == 0)
+		if (current->n > 127 || current->n <= 0)
 		{
 			break;
 		}
@@ -74,4 +74,51 @@ void pstr(stack_t **stack, unsigned int line_number)
 		current = current->next;
 	}
 	printf("\n");
+}
+
+/**
+ * rotl - rotate elements left
+ * @stack: stack
+ * @line_number: file line number
+ * Return: nothing
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *new_node;
+	(void)line_number;
+
+	new_node = malloc(sizeof(stack_t));
+	new_node->n = (*stack)->n;
+	new_node->next = NULL;
+	pop(stack, line_number);
+	new_node->prev = *stack;
+	while (new_node->prev != NULL)
+	{
+		new_node = new_node->prev;
+	}
+	*stack = new_node;
+}
+
+/**
+ * rotr - rotate elements right
+ * @stack: stack
+ * @line_number: file line number
+ * Return: nothing
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *new_node;
+	stack_t *current;
+	(void)line_number;
+
+	current = *stack;
+	new_node = malloc(sizeof(stack_t));
+	while (current->next != NULL)
+	{
+		current = current->next;
+	}
+	new_node->n = current->n;
+	new_node->prev = NULL;
+    new_node->next = *stack;
+	*stack = new_node;
 }
